@@ -1,13 +1,13 @@
 import { useState } from 'react'
-function Register() {
+function RegisterVoter() {
 
   return (
     <>
       <div>
-        Register Candidate
+        Register Voter
       </div>
     </>
   )
 }
 
-export default Register
+export default RegisterVoter

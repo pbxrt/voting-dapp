@@ -13,8 +13,8 @@ const items = [
     label: 'Register',
     key: 'register',
     children: [
-      { label: 'Candidate', key: 'candidate' },
-      { label: 'Voter', key: 'voter' }
+      { label: 'Candidate', key: 'register/candidate' },
+      { label: 'Voter', key: 'register/voter' }
     ]
   },
 ];

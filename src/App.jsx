@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router";
 import './App.css'
-import Register from './pages/Register'
+import RegisterCandidate from './pages/RegisterCandidate'
+import RegisterVoter from './pages/RegisterVoter'
 
 import Nav from './components/Nav'
 import Dashboard from './pages/Dashboard'
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register/candidate" element={<RegisterCandidate />} />
+          <Route path="/register/voter" element={<RegisterVoter />} />
         </Routes>
       </BrowserRouter>
     </>
