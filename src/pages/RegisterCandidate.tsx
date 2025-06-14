@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Image, Typography, Table, Button, Empty, Form, Checkbox, Input } from 'antd';
 import CreateModal from '@/components/CreateModal';
+import { getCandidates } from '@/contracts/Voting';
 
 const { Title } = Typography;
 
@@ -10,7 +11,7 @@ const columns = [
     dataIndex: 'avatar',
     key: 'avatar',
     render: (_, { avatar }) => {
-      return <Image src={avatar} width={100} />
+      return <Image src={`https://gateway.pinata.cloud/ipfs/${avatar}`} width={100} />
     },
     width: 200
   },
@@ -31,12 +32,21 @@ const columns = [
   },
 ];
 function Register() {
-  const [dataSource, setDataSource] = useState([{ key: '1', avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png', name: 'John Brown', age: 32, address: 'New York No. 1 Lake Park' }]);
+  const [dataSource, setDataSource] = useState([]);
   const createModalRef = useRef(null);
 
   const onCreateNew = () => {
     createModalRef.current?.open('candidate');
   }
+
+  const refreshTable = async () => {
+    const candidates = await getCandidates();
+    setDataSource(candidates);
+  }
+
+  useEffect(() => {
+    refreshTable();
+  }, []);
 
   return (
     <div className="px-8">
@@ -49,7 +59,7 @@ function Register() {
         </Table>
       </div>
 
-      <CreateModal ref={createModalRef} />
+      <CreateModal ref={createModalRef} refreshTable={refreshTable} />
     </div>
   )
 }
